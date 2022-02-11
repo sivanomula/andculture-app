@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import TutorialsList from "./components/TutorialsList";
+import ViewTutorial from "./components/ViewTutorial";
+import { Link, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+      <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <a href="/breweries" className="navbar-brand">
+          AndCulture
         </a>
-      </header>
+        <div className="navbar-nav mr-auto">
+          <li className="nav-item">
+            <Link to={"/breweries"} className="nav-link">
+              breweries
+            </Link>
+          </li>
+        </div>
+      </nav>
+      <div className="container mt-3">
+        <Routes>
+          <Route path="/" element={<TutorialsList />} />
+          <Route path="/breweries" element={<TutorialsList />} />
+          <Route path={"/view/:id"} element={<ViewTutorial />} />
+        </Routes>
+      </div>
     </div>
   );
 }
